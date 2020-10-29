@@ -1,0 +1,18 @@
+{
+    "name": "verizonBot",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "appId": "84ae42c9-8e7c-4031-94a4-8eedf2c78dce",
+            "appPassword": "f7040gjY(f4{RP-|9gRk[*#D",
+            "endpoint": "http://localhost:3978/api/messages",
+            "id": "71e5d260-19c9-11eb-8e87-e7541f928599",
+            "name": "http://localhost:3978/api/messages"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "overrides": null,
+    "path": "/Users/pgg/Code/verizonBot/verizonBot.bot"
+}
