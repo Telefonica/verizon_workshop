@@ -10,7 +10,11 @@ class AnswerBuilder {
             return 'This is a VerizonBot test';
 
         case 'tf.int.identity.age':
+<<<<<<< HEAD
             return "My age is calculated in clock cycles, I've got quite a few";
+=======
+            return "My age is calculated in clock cycles, I've got quite a few!";
+>>>>>>> speak
 
         case 'tf.int.common.pref_travel':
             return 'Yes, I love travelling through the net';
