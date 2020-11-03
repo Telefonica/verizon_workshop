@@ -1,4 +1,5 @@
-const { ActivityHandler, ActionTypes, ActivityTypes, CardFactory } = require('botbuilder');
+const { ActionTypes, ActivityTypes, CardFactory } = require('botbuilder');
+const AdaptiveCard = require('./adaptiveCard.json');
 
 class AnswerBuilder {
     async getAnswer(luisResponse) {
@@ -13,7 +14,7 @@ class AnswerBuilder {
             return "My age is calculated in clock cycles, I've got quite a few!";
 
         case 'tf.int.common.pref_travel':
-            return 'Yes, I love travelling through the net';
+            return this.travel();
 
         case 'tf.int.common.basic_byes':
             return 'It was nice talking to you, see you soon';
@@ -28,8 +29,8 @@ class AnswerBuilder {
 
     greetings() {
         const reply = { type: ActivityTypes.Message };
-        reply.text = 'This is an inline attachment.';
-        reply.speak = ''
+        reply.text = 'Previous text to attachments Card';
+        reply.speak = 'speak';
         const buttons = [
             { type: ActionTypes.ImBack, title: 'Name', value: 'What is your name?' },
             { type: ActionTypes.ImBack, title: 'Age', value: 'How old are your?' },
@@ -50,6 +51,15 @@ class AnswerBuilder {
         card3.content.title = 'Greetings 3';
 
         reply.attachments = [card, card2, card3];
+        return reply;
+    }
+
+    travel() {
+        const aCard = CardFactory.adaptiveCard(AdaptiveCard);
+        const reply = { type: ActivityTypes.Message };
+        reply.text = 'Previous text to adaptive Card';
+        reply.speak = 'speak';
+        reply.attachments = [aCard];
         return reply;
     }
 }
