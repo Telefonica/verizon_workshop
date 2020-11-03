@@ -12,8 +12,7 @@ class EchoBot extends ActivityHandler {
         this.onMessage(async (context, next) => {
             const luisRes = await recognizer.executeLuisQuery(context);
             const response = await answerBuilder.getAnswer(luisRes);
-            const speak = 'whatever you like to speak';
-            await context.sendActivity(MessageFactory.text(response, speak));
+            await context.sendActivity(response);
             // By calling next() you ensure that the next BotHandler is run.
             await next();
         });
