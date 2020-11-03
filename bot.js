@@ -11,10 +11,9 @@ class EchoBot extends ActivityHandler {
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         this.onMessage(async (context, next) => {
             const luisRes = await recognizer.executeLuisQuery(context);
-            console.log('luisRes ===>', luisRes);
             const response = await answerBuilder.getAnswer(luisRes);
-            console.log('response ===>', response);
-            await context.sendActivity(MessageFactory.text(response, response));
+            const speak = 'whatever you like to speak';
+            await context.sendActivity(MessageFactory.text(response, speak));
             // By calling next() you ensure that the next BotHandler is run.
             await next();
         });
