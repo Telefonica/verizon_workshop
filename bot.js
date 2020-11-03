@@ -2,14 +2,19 @@
 // Licensed under the MIT License.
 
 const { ActivityHandler, MessageFactory } = require('botbuilder');
+const { AnswerBuilder } = require('./answerBuilder');
 
 class EchoBot extends ActivityHandler {
-    constructor() {
+    constructor(recognizer) {
         super();
+        const answerBuilder = new AnswerBuilder();
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         this.onMessage(async (context, next) => {
-            const replyText = `You just said: ${ context.activity.text }`;
-            await context.sendActivity(MessageFactory.text(replyText, replyText));
+            const luisRes = await recognizer.executeLuisQuery(context);
+            console.log('luisRes ===>', luisRes);
+            const response = await answerBuilder.getAnswer(luisRes);
+            console.log('response ===>', response);
+            await context.sendActivity(MessageFactory.text(response, response));
             // By calling next() you ensure that the next BotHandler is run.
             await next();
         });

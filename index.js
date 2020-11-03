@@ -16,6 +16,12 @@ const { BotFrameworkAdapter } = require('botbuilder');
 
 // This bot's main dialog.
 const { EchoBot } = require('./bot');
+const { Recognizer } = require('./recognizer');
+
+const { LuisAppId, LuisAPIKey, LuisAPIHostName } = process.env;
+const luisConfig = { applicationId: LuisAppId, endpointKey: LuisAPIKey, endpoint: `https://${ LuisAPIHostName }` };
+
+const luisRecognizer = new Recognizer(luisConfig);
 
 // Create HTTP server
 const server = restify.createServer();
@@ -58,7 +64,7 @@ const onTurnErrorHandler = async (context, error) => {
 adapter.onTurnError = onTurnErrorHandler;
 
 // Create the main dialog.
-const myBot = new EchoBot();
+const myBot = new EchoBot(luisRecognizer);
 
 // Listen for incoming requests.
 server.post('/api/messages', (req, res) => {
