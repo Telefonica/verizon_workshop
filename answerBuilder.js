@@ -10,11 +10,7 @@ class AnswerBuilder {
             return 'This is a VerizonBot test';
 
         case 'tf.int.identity.age':
-<<<<<<< HEAD
-            return "My age is calculated in clock cycles, I've got quite a few";
-=======
             return "My age is calculated in clock cycles, I've got quite a few!";
->>>>>>> speak
 
         case 'tf.int.common.pref_travel':
             return 'Yes, I love travelling through the net';
@@ -47,7 +43,13 @@ class AnswerBuilder {
             { text: 'Hero Card Text. You can write your own copy but there is a char limitation.' }
         );
 
-        reply.attachments = [card];
+        const card2 = card;
+        card2.content.title = 'Greetings 2';
+
+        const card3 = card;
+        card3.content.title = 'Greetings 3';
+
+        reply.attachments = [card, card2, card3];
         return reply;
     }
 }
